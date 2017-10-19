@@ -1,4 +1,4 @@
-package com.tild.desafio.blog.model;
+package com.tild.desafio.blog.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.google.common.base.Preconditions;

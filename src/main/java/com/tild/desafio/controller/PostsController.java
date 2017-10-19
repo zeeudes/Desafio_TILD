@@ -1,8 +1,9 @@
-package com.tild.desafio.posts;
+package com.tild.desafio.controller;
 
 import com.tild.desafio.blog.data.PostRepository;
 import com.tild.desafio.blog.data.UserRepository;
-import com.tild.desafio.blog.model.Post;
+import com.tild.desafio.blog.domain.Post;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

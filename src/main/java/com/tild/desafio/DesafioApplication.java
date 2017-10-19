@@ -2,8 +2,9 @@ package com.tild.desafio;
 
 import com.tild.desafio.blog.data.PostRepository;
 import com.tild.desafio.blog.data.UserRepository;
-import com.tild.desafio.blog.model.Post;
-import com.tild.desafio.blog.model.User;
+import com.tild.desafio.blog.domain.Post;
+import com.tild.desafio.blog.domain.User;
+
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

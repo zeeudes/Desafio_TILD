@@ -1,8 +1,11 @@
-package com.tild.desafio.blog.model;
+package com.tild.desafio.blog.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.google.common.base.Preconditions;
 
 import javax.persistence.*;
+
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -25,7 +28,28 @@ public class User {
         super();
     }
 
-    public Long getId() {
+    public User(String name, String twitter) {
+		super();
+		this.name = name;
+		this.twitter = twitter;
+	}
+
+	public User(String name, String twitter, List<Post> posts) {
+		super();
+		this.name = name;
+		this.twitter = twitter;
+		this.posts = posts;
+	}
+
+	public User(Long id, String name, String twitter, List<Post> posts) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.twitter = twitter;
+		this.posts = posts;
+	}
+
+	public Long getId() {
         return id;
     }
 
@@ -83,5 +107,25 @@ public class User {
                 ", name='" + name + '\'' +
                 ", twitter='" + twitter + '\'' +
                 '}';
+    }
+    
+    public boolean isValid() {
+        boolean valid = false;
+
+        try {
+            Arrays.asList(this.getId(), this.getName(), this.getTwitter())
+                    .forEach(Preconditions::checkNotNull);
+
+            Arrays.asList(this.getName(), this.getTwitter())
+                    .forEach(txt -> {
+                        Preconditions.checkArgument(!txt.isEmpty());
+                    });
+
+            valid = true;
+        } catch (Exception e){
+            valid = false;
+        }
+
+        return valid;
     }
 }
