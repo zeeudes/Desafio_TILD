@@ -1,9 +1,5 @@
 package com.tild.desafio.controller;
 
-import com.tild.desafio.blog.data.PostRepository;
-import com.tild.desafio.blog.data.UserRepository;
-import com.tild.desafio.blog.domain.Post;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,33 +7,32 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-@Controller
-@RequestMapping("/posts")
-public class PostsController {
+import com.tild.desafio.blog.data.UserRepository;
+import com.tild.desafio.blog.domain.User;
 
-	private PostRepository postRepository;
+@Controller
+@RequestMapping("/user")
+public class UserController {
+
 	private UserRepository userRepository;
 
 	@Autowired
-	public PostsController(PostRepository postRepository, UserRepository userRepository) {
-		this.postRepository = postRepository;
+	public UserController(UserRepository userRepository) {
 		this.userRepository = userRepository;
 	}
 
 	@GetMapping("/new")
 	public ModelAndView newPost() {
-		ModelAndView mv = new ModelAndView("new");
+		ModelAndView mv = new ModelAndView("user");
 
-		mv.addObject("users", userRepository.findAll());
-		mv.addObject("newPost", new Post());
+		mv.addObject("newUser", new User());
 
 		return mv;
 	}
 
 	@PostMapping
-	public ModelAndView createPost(Post post) {
-		if (post.isValid())
-			postRepository.save(post);
+	public ModelAndView createUser(User user) {
+		userRepository.save(user);
 
 		return new ModelAndView("redirect:/");
 	}
