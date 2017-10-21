@@ -42,11 +42,12 @@ public class DesafioApplication {
                     "                    </p>";
 
             User joshLong = userRepository.findOne(1L);
-
+            
             Post post = new Post();
             post.setTitle("What are Cloud-Native Applications?");
             post.setText(text);
             post.setUser(joshLong);
+            post.setTags("BIG DATA,CLOUD COMPUTING");
 
             postRepository.save(post);
         };

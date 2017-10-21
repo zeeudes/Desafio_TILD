@@ -14,6 +14,8 @@ public class Post {
     private Long id;
 
     private String title;
+    
+    private String tags;
 
     @Lob
     private String text;
@@ -43,7 +45,15 @@ public class Post {
         this.title = title;
     }
 
-    public String getText() {
+	public String getTags() {
+		return tags;
+	}
+
+	public void setTags(String tags) {
+		this.tags = tags;
+	}
+
+	public String getText() {
         return text;
     }
 

@@ -2,11 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:include="layout :: header"></head>
 <body>
-
-<div id="layout" class="pure-g">
-    <div th:replace="layout :: sidebar"></div>
-    <div th:replace="posts :: new"></div>
-</div>
-
+	<div id="layout" class="pure-g">
+		<div th:replace="layout :: sidebar"></div>
+		<div th:replace="posts :: new"></div>
+	</div>
+	<script type="text/javascript">
+		$('#tags').tagEditor({
+			placeholder : 'Enter tags ...',
+			onChange : function() {
+				$('#tag').val($('#tags').tagEditor('getTags')[0].tags);
+			}
+		});
+	</script>
 </body>
 </html>

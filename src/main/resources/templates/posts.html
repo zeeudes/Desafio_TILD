@@ -18,11 +18,13 @@
                     <p class="post-meta">
                         By <a class="post-author" target="_blank" th:href="${post.user.getTwitterUrl()}"
                               th:text="${post.user.name}"></a> under
-                        <a class="post-category post-category-js" href="#">MULTIPLE</a>
-                        <a class="post-category post-category-yui" href="#">FUTURE TAG</a>
                     </p>
+                    <div th:each="tag : ${#strings.arraySplit(post.tags, ',')}">        
+                       	<a class="post-category" th:text="${tag}" th:href="@{'/posts/post/' + ${tag}}"></a>
+                       </div>
                 </header>
-
+				<br/>
+				<br/>
                 <div class="post-description" th:utext="${post.text}"></div>
             </section>
 
@@ -52,7 +54,7 @@
                     </div>
 
                     <div class="pure-control-group">
-                        <label for="title">Post</label>
+                        <label for="summernote">Post</label>
                         <div class="pure-u-3-4">
                             <textarea id="summernote" th:field="*{text}"></textarea>
 
@@ -76,9 +78,18 @@
                             </script>
                         </div>
                     </div>
-
+					
+					<div class="pure-control-group">
+                        <label for="tags">Tags</label>
+                        <div class="pure-u-3-4">
+                        	<textarea id="tags" class="tag-editor-hidden-src"></textarea>
+						</div>
+					</div>	
+					
+					<input type="hidden" name="tags" id="tag" th:field="*{tags}" />
+					
                     <div class="pure-controls">
-                        <button type="submit" class="pure-button pure-button-primary">Submit</button>
+                        <button id="submit" type="submit" class="pure-button pure-button-primary">Submit</button>
                     </div>
                 </fieldset>
             </form>
